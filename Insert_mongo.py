@@ -1,8 +1,8 @@
-
+from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
 
-class TesterMmongo:
+class TesterMongo:
     def constructor(self):
         uri = "mongodb+srv://SuperAdmin:SuperAdmin123@interfaccia.zekgqcl.mongodb.net/?retryWrites=true&w=majority&appName=Interfaccia"
         # Create a new client and connect to the server
@@ -35,9 +35,9 @@ class TesterMmongo:
             print("Errore durante l'inserimento del documento")
 
 
-    def insert_negozio(self,id, lunghezza, larghezza, nome_attività, servizi, prezzo):
+    def insert_negozio(self,id, lunghezza, larghezza, nome_attivita, servizi, prezzo):
         collection=self.db["Casa"]
-        doc={"id":id,"lunghezza":lunghezza,"larghezza":larghezza,"nome_attivita":nome_attività,"servizi":servizi,"prezzo":prezzo}
+        doc={"id":id,"lunghezza":lunghezza,"larghezza":larghezza,"nome_attività":nome_attivita,"servizi":servizi,"prezzo":prezzo}
         result=collection.insert_one(doc)
         if result.acknowledged:
             print("Documento inserito correttamente")
@@ -54,7 +54,7 @@ class TesterMmongo:
         else:
             print("Errore durante l'inserimento del documento")
 
-    def SpazioPubblico(self,id, lunghezza, larghezza, funzione, prezzo):
+    def insert_SpazioPubblico(self,id, lunghezza, larghezza, funzione, prezzo):
         collection=self.db["EdificioPubblico"]
         doc={"id":id,"lunghezza":lunghezza,"larghezza":larghezza,"funzione":funzione,"prezzo":prezzo}
         result=collection.insert_one(doc)
@@ -62,3 +62,6 @@ class TesterMmongo:
             print("Documento inserito correttamente")
         else:
             print("Errore durante l'inserimento del documento")
+
+tm=TesterMongo()
+tm.insert_negozio("0001","204","205","negozio1","vendita","15")
