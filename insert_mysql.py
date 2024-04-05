@@ -31,122 +31,79 @@ class TesterSql:
         except:
             print("Attenzione KO CHIUSURA CONNESSIONE DB")
 
-    def insert_Utente(self, id_utente, username, nome, cognome, data, email, password, citta):
+    def insert_Utente(self,username,nome,cognome,data,email,password,citta):
         c = self.connessione()
-        query = f"INSERT INTO Utente(Id_Utente,Username,Nome,Cognome,Data_nascita,Email,Psw,Citta) VALUES('{id_utente}',
-        '{username}',
-        '{nome}',
-        '{cognome}',
-        '{data}',
-        '{email}',
-        '{password}',
-        '{citta}')"
+        query = f"INSERT INTO Utente(Username,Nome,Cognome,Data_nascita,Email,Psw,Citta) VALUES('{username}','{nome}','{cognome}','{data}','{email}','{password}','{citta}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_Simulazione(self, id_simulazione, data_creazione, nome_città, id_u, id_m):
+    def insert_Simulazione(self,data_creazione,nome_città,id_u,id_m):
         c = self.connessione()
-        query = f"INSERT INTO Simulazione(Id_Simulazione, Data_creazione, Nome_città, IdU, IdM) VALUES('{id_simulazione}',
-        '{data_creazione}',
-        '{nome_città}',
-        '{id_u}',
-        '{id_m}')"
+        query = f"INSERT INTO Simulazione(Data_creazione,Nome_città,IdU,IdM) VALUES('{data_creazione}','{nome_città}','{id_u}','{id_m}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_Meteo(self, id_meteo, datatime, pressione, temperatura, velocità_vento, direzione_vento, umidità,
-                     morfologia, precipitazioni, irraggiamento):
+    def insert_Meteo(self,datatime,pressione,temperatura,velocità_vento,direzione_vento,umidità,
+                     morfologia,precipitazioni,irraggiamento):
         c = self.connessione()
-        query = f"INSERT INTO Meteo(Id_Meteo,Datatime,Pressione,Temperatura,Velocità_vento,Direzione_vento,Umidità,Morfologia,Precipitazioni,Irraggiamento) VALUES(''{id_meteo}'
-        '{datatime}',
-        '{pressione}',
-        '{temperatura}',
-        '{velocità_vento}',
-        '{direzione_vento}',
-        '{umidità}',
-        '{morfologia}',
-        '{precipitazioni}',
-        '{irraggiamento}')"
+        query = f"INSERT INTO Meteo(Datatime,Pressione,Temperatura,Velocità_vento,Direzione_vento,Umidità,Morfologia,Precipitazioni,Irraggiamento) VALUES('{datatime}','{pressione}','{temperatura}','{velocità_vento}','{direzione_vento}','{umidità}','{morfologia}','{precipitazioni}','{irraggiamento}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_Batteria(self, id_serie, energia_stoccata, entrata, uscita, datatime, capacità_max, id_sim):
+    def insert_Batteria(self,energia_stoccata,entrata,uscita,datatime,capacità_max,id_sim):
         c = self.connessione()
-        query = f"INSERT INTO Batteria(Id_Serie,Energia_stoccata,Entrata,Uscita,Capacità_max,Datatime,IdS) VALUES('{id_serie}',
-        '{energia_stoccata}',
-        '{entrata}',
-        '{uscita}',
-        '{capacità_max}',
-        '{datatime}',
-        '{id_sim}')"
+        query = f"INSERT INTO Batteria(Energia_stoccata,Entrata,Uscita,Capacità_max,Datatime,IdS) VALUES('{energia_stoccata}','{entrata}','{uscita}','{capacità_max}','{datatime}','{id_sim}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_Compravendita(self, id_trans, guadagno, quantità_venduta, spesa, quantità_comprata, datatime, id_batt):
+    def insert_Compravendita(self,guadagno,quantità_venduta,spesa,quantità_comprata,datatime,id_batt):
         c = self.connessione()
-        query = f"INSERT INTO Compravendita(Id_Transazione,Guadagno,Quantità_venduta,Spesa,Quantità_comprata,Datatime,IdBa) VALUES('{id_trans}',
-        '{guadagno}',
-        '{quantità_venduta}',
-        '{spesa}',
-        '{quantità_comprata}',
-        '{datatime}',
-        '{id_batt}')"
+        query = f"INSERT INTO Compravendita(Guadagno,Quantità_venduta,Spesa,Quantità_comprata,Datatime,IdBa) VALUES('{guadagno}','{quantità_venduta}','{spesa}','{quantità_comprata}','{datatime}','{id_batt}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_Struttura(self, is_struttura, consumo, posizione, direzione, costo, numero_abitanti, numero_pannelli,
-                         piani, superficie, tipo, id_sim, id_pann, id_prod):
+    def insert_Struttura(self,consumo,posizione,direzione,costo,numero_abitanti,numero_pannelli,
+                         piani,superficie,tipo,id_sim,id_pann,id_prod):
         c = self.connessione()
-        query = f"INSERT INTO Struttura(Id_Edificio,Consumo,Posizione,Direzione,Costo,Numero_abitanti,Numero_pannelli,Piani,Superficie,Tipo,IdS,IdPan,IdProd) VALUES('{is_struttura}',
-        '{consumo}',
-        '{posizione}',
-        '{direzione}',
-        '{costo}',
-        '{numero_abitanti}',
-        '{numero_pannelli}',
-        '{piani}',
-        '{superficie},
-        '{tipo}',
-        '{id_sim}',
-        '{id_pann}',
-        '{id_prod}')"
+        query = f"INSERT INTO Struttura(Consumo,Posizione,Direzione,Costo,Numero_abitanti,Numero_pannelli,Piani,Superficie,Tipo,IdS,IdPan,IdProd) VALUES('{consumo}','{posizione}','{direzione}','{costo}','{numero_abitanti}','{numero_pannelli}','{piani}','{superficie},'{tipo}','{id_sim}','{id_pann}','{id_prod}')"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_TipoPannello(self, id_pannello, dimensione, stato, prezzo):
+    def insert_TipoPannello(self,id_pannello,dimensione,stato,prezzo):
         c = self.connessione()
         time.sleep(10)
-        query = f"INSERT INTO TipoPannello(Id_Pannello,Dimensione,Stato,Prezzo) VALUES({id_pannello},
+        query = f"INSERT INTO TipoPannello(Dimensione,Stato,Prezzo) VALUES(
         {dimensione},
         {stato},
-        {prezzo})"
+        {prezzo}
+        )"
         cursore = c.cursor()
         cursore.execute(query)
         c.commit()
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_ProduzioneStorico(self, id_produzione, potenza, datatime):
+    def insert_ProduzioneStorico(self,potenza,datatime):
         c = self.connessione()
-        query = f"INSERT INTO ProduzioneStorico(Id_Produzione,Potenza,Datatime) VALUES({id_produzione},
+        query = f"INSERT INTO ProduzioneStorico(Id_Produzione,Potenza,Datatime) VALUES(
         '{potenza}',
         '{datatime}')"
         cursore = c.cursor()
@@ -155,9 +112,9 @@ class TesterSql:
         self.connesione.commit()
         self.disconnesione()
 
-    def insert_CostoEnergiaStorico(self, id_costo, datatime, costo_acquisto, costo_vendita):
+    def insert_CostoEnergiaStorico(self,datatime,costo_acquisto,costo_vendita):
         c = self.connessione()
-        query = f"INSERT INTO Costo_Energia_Storico(Id_costo,Datatime,Costo_acquisto,Costo_vendita) VALUES('{id_costo}',
+        query = f"INSERT INTO Costo_Energia_Storico(Datatime,Costo_acquisto,Costo_vendita) VALUES (
         '{datatime}',
         '{costo_acquisto}',
         '{costo_vendita}')"
