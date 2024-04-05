@@ -33,7 +33,7 @@ class TesterSql:
 
     def insert_Utente(self,username,nome,cognome,data,email,password,citta):
         c=self.connessione()
-        query=f"INSERT INTO Utente(Username,Nome,Cognome,data_nascita,email,password,citta) VALUES('{username}','{nome}','{cognome}','{data}','{email}','{password}','{citta}')"
+        query=f"INSERT INTO Utente(Username,Nome,Cognome,Data_nascita,Email,Psw,Citta) VALUES('{username}','{nome}','{cognome}','{data}','{email}','{password}','{citta}')"
         cursore=c.cursor()
         cursore.execute(query)
         c.commit()
