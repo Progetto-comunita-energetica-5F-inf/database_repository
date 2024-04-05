@@ -69,4 +69,4 @@ class TesterMongo:
 
 # Example usage
 tm = TesterMongo()
-tm.insert_negozio("0001", "204", "205", "negozio1", "vendita", "15")
+tm.insert_negozio("0002", "204", "205", "negozio1", "vendita", "15")
