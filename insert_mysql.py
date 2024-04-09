@@ -103,7 +103,7 @@ class TesterSql:
 
     def insert_ProduzioneStorico(self,potenza,datatime):
         c = self.connessione()
-        query = f"INSERT INTO ProduzioneStorico(Id_Produzione,Potenza,Datatime) VALUES(
+        query = f"INSERT INTO ProduzioneStorico(Potenza,Datatime) VALUES(
         '{potenza}',
         '{datatime}')"
         cursore = c.cursor()
