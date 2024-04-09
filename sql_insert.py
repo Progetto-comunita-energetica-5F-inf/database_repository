@@ -87,7 +87,6 @@ def insert_batteria(energia_stoccata, entrata, uscita, capacita_max, data_ora):
         """
         cursor.execute(query)
         connection.commit()
-
 insert_batteria("25","50","25","700","2024/03/22 12:30:12") #DA PROVARE
 
 def insert_compravendita(guadagno, quantita_venduta, spesa, quantita_comprata, data_ora):
@@ -103,6 +102,41 @@ def insert_compravendita(guadagno, quantita_venduta, spesa, quantita_comprata, d
 
 
 insert_compravendita("500","4","400","40","2024/03/22 12:30:12") #DA PROVARE
+
+def insert_simulazione(data_inizio, data_fine, costo_totale, guadagno_totale, emissioni_co2_risparmiate,
+                    id_utente):
+
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"  #
+    with pyodbc.connect(connection_string) as connection:
+        cursor = connection.cursor()
+        query = f"""
+            INSERT INTO Simulazione (DataInizio, DataFine, CostoTotale, GuadagnoTotale, EmissioniCO2Risparmiate, IdUtente)
+            VALUES ('{data_inizio}', '{data_fine}', {costo_totale}, {guadagno_totale}, 
+            {emissioni_co2_risparmiate}, {id_utente})
+        """
+        cursor.execute(query)
+        connection.commit()
+
+
+insert_simulazione("2024/03/22","2024/03/22","500","400","500","ettore not found ") #DA PROVARE
+
+def insert_struttura(consumo, posizione, direzione, costo, numero_abitanti,
+                    numero_pannelli, piani, superficie, tipo, id_simulazione, id_tipo_pannello):
+
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        cursor = connection.cursor()
+        query = f"""
+            INSERT INTO Struttura (Consumo, Posizione, Direzione, Costo, Num_abitanti, 
+            Numero_pannelli, Piani, Superficie, Tipo, IdS, IdPan)
+            VALUES ({consumo}, '{posizione}', '{direzione}', {costo}, {numero_abitanti}, 
+            {numero_pannelli}, {piani}, {superficie}, '{tipo}', {id_simulazione}, {id_tipo_pannello})
+        """
+        cursor.execute(query)
+        connection.commit()
+
+insert_struttura("500","400","50","500","4000000000","4","7","piatta come ...","bordello","ettore not found","ettore not found pt 2") #DA PROVARE
+
 
 
 
