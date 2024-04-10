@@ -1,8 +1,8 @@
-Descrizione del Codice e Tutorial
+# Descrizione del Codice e Tutorial
 
 Il codice fornito è diviso in due parti principali: l'interfaccia per MongoDB e l'interfaccia per SQL. L'obiettivo dell'applicazione è fornire un'interfaccia utente per l'inserimento di dati in un database, utilizzando due diverse tecnologie di database: MongoDB e SQL Server.
 
-Struttura del Codice:
+## Struttura del Codice
 
 1. Modulo `insert_mongo.py`:
    - Contiene la classe `TesterMongo` che gestisce l'interazione con il database MongoDB.
@@ -17,7 +17,7 @@ Struttura del Codice:
    - L'utente può scegliere se accedere al database MongoDB o al database SQL Server.
    - All'interno di ciascuna scelta, l'utente può inserire diversi tipi di dati corrispondenti alle varie entità del database.
 
-Tutorial:
+## Tutorial
 
 Per utilizzare l'applicazione, segui i passaggi seguenti:
 
@@ -26,7 +26,7 @@ Per utilizzare l'applicazione, segui i passaggi seguenti:
 3. Seleziona se accedere al database MongoDB o al database SQL Server.
 4. Segui le istruzioni sul terminale per inserire i dati desiderati.
 
-Esempio di Utilizzo:
+## Esempio di Utilizzo
 
 1. Seleziona l'opzione per accedere al database MongoDB.
 2. Scegli l'operazione di inserimento desiderata, ad esempio "Inserire una Mappa".
