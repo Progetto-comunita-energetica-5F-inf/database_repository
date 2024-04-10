@@ -1,35 +1,36 @@
-Il codice presente in questa repository è diviso in due parti principali: l'interfaccia per MongoDB e l'interfaccia per SQL. 
-L'obiettivo dell'applicazione è fornire un'interfaccia utente per l'inserimento di dati in un database, utilizzando due diverse tecnologie di database: MongoDB e SQL Server.
+# README
 
-Struttura del Codice:
+Il presente codice fornisce una serie di classi e funzioni per l'inserimento di dati in due diversi tipi di database: MongoDB e SQL Server. 
 
-1. Modulo `insert_mongo.py`:
-   - Contiene la classe `TesterMongo` che gestisce l'interazione con il database MongoDB.
-   - La classe contiene metodi per inserire dati nelle varie collezioni del database MongoDB.
+## Struttura del codice
 
-2. Modulo `insert_sql.py`:
-   - Contiene la classe `TesterSQL` che gestisce l'interazione con il database SQL Server.
-   - La classe contiene metodi per inserire dati nelle varie tabelle del database SQL Server.
+Il codice è organizzato in tre parti principali:
 
-3. `TestAppCLI`:
-   - Questa classe rappresenta l'interfaccia utente della nostra applicazione.
-   - L'utente può scegliere se accedere al database MongoDB o al database SQL Server.
-   - All'interno di ciascuna scelta, l'utente può inserire diversi tipi di dati corrispondenti alle varie entità del database.
+1. **Classe `TestAppCLI`**: questa classe gestisce l'interfaccia a riga di comando (CLI) per l'utente. Attraverso questa CLI, l'utente può scegliere se accedere al database MongoDB o al database SQL Server e inserire i dati corrispondenti.
 
-Tutorial:
+2. **Classe `TesterMongo`**: questa classe gestisce le operazioni di inserimento dei dati nel database MongoDB. Include metodi per l'inserimento di mappe, case, negozi, edifici pubblici e spazi pubblici.
 
-Per utilizzare l'applicazione, segui i passaggi seguenti:
+3. **Classe `TesterSQL`**: questa classe gestisce le operazioni di inserimento dei dati nel database SQL Server. Include metodi per l'inserimento di utenti, dati meteo, tipi di pannelli solari, produzione storica, costi energetici storici, batterie, transazioni di compravendita, simulazioni e strutture.
 
-1. Esegui il file `readme.txt` nel tuo ambiente di sviluppo Python.
-2. Avvia il programma inserendo `python nome_file.py`.
-3. Seleziona se accedere al database MongoDB o al database SQL Server.
-4. Segui le istruzioni sul terminale per inserire i dati desiderati.
+## Come funziona
 
-Esempio di Utilizzo:
+L'utente può interagire con il codice tramite la classe `TestAppCLI`. All'avvio, viene visualizzato un menu che consente di scegliere tra l'accesso al database MongoDB (opzione 1) e l'accesso al database SQL Server (opzione 2).
 
-1. Seleziona l'opzione per accedere al database MongoDB.
-2. Scegli l'operazione di inserimento desiderata, ad esempio "Inserire una Mappa".
-3. Segui le istruzioni per inserire i dettagli della mappa, come lunghezza, larghezza e prezzo.
-4. Ripeti il processo per altre operazioni di inserimento o uscire dall'applicazione.
+### Accesso al database MongoDB
 
-Nota: Assicurati di avere le credenziali corrette per accedere ai database MongoDB e SQL Server, e che i server siano in esecuzione prima di utilizzare l'applicazione.
+Se l'utente sceglie di accedere al database MongoDB, può inserire i dati relativi a diverse entità come mappe, case, negozi, edifici pubblici e spazi pubblici. Per ciascuna entità, verranno richiesti i dati pertinenti, come lunghezza, larghezza, prezzo, ecc.
+
+### Accesso al database SQL Server
+
+Se l'utente sceglie di accedere al database SQL Server, può inserire i dati relativi a utenti, dati meteo, tipi di pannelli solari, produzione storica, costi energetici storici, batterie, transazioni di compravendita, simulazioni e strutture. Per ciascuna entità, verranno richiesti i dati pertinenti, come username, temperatura, guadagno, ecc.
+
+## Tutorial
+
+Ecco un breve tutorial su come utilizzare il codice:
+
+1. Avvia il programma eseguendo il codice Python.
+2. Scegli se accedere al database MongoDB (opzione 1) o al database SQL Server (opzione 2).
+3. Segui le istruzioni a schermo per inserire i dati richiesti per l'entità scelta.
+4. Ripeti il processo per inserire altre entità o esci dal programma quando hai finito.
+
+È importante notare che per l'utilizzo del codice è necessario disporre di un'adeguata configurazione e accesso ai database MongoDB e SQL Server. Assicurati di avere le credenziali e i dettagli di connessione corretti per poter eseguire con successo le operazioni di inserimento dei dati.
