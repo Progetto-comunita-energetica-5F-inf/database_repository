@@ -1,34 +1,227 @@
 import pyodbc
 
 
-def visualizzaTutto():
+def visualizzaUtente():
+    lista = []
     connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
     with pyodbc.connect(connection_string) as connection:
         try:
             cursor = connection.cursor()
             query = f"""
                 SELECT *
-                FROM Utente, 
-                Meteo, 
-                Tipo_pannello, 
-                Produzione_Storico, 
-                Costo_Energia_Storico, 
-                Simulazione, 
-                Struttura, 
-                Batteria, 
-                Compravendita
-            """
+                FROM Utente
+                """
             cursor.execute(query)
-            connection.commit()
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
             lista = cursor.fetchall()
             # Visualizzazione delle tabelle
             print("Tabelle nel database:")
             for table in lista:
+                print("\n")
                 print(table)
                 print("\n")
         except pyodbc.Error as e:
             print("Errore durante il recupero delle tabelle:", e)
 
+#visualizzaUtente() 
+
+
+def visualizzaMeteo():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Meteo
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaMeteo()
+
+def visualizzaBatteria():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Batteria
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaBatteria()
+
+def visualizzaTipoPann():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Tipo_Pannello
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaTipoPann()
+
+
+def visualizzaProduzioneStorico():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Produzione_Storico
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaProduzioneStorico()
+
+
+def visualizzaCostoEnergiaStorico():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Costo_Energia_Storico
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaCostoEnergiaStorico()
+
+
+def visualizzaCompravendita():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Compravendita
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaCompravendita()
+
+
+def visualizzaSim():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Simulazione
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaSim()
+
+
+def visualizzaStruttura():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Struttura
+                """
+            cursor.execute(query)
+            # Fetch all restituisce una lista di tuple, dove ogni tupla rappresenta una riga della tabella
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print("\n")
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+#visualizzaStruttura()
 
 
 #-- per ogni simulazione tutti gli edifici e la somma della superficie dei pannelli solari di ogni edificio --
@@ -40,16 +233,11 @@ def query1():
             cursor = connection.cursor()
             query = """
                 SELECT s.Id_Simulazione, st.Id_Struttura, SUM(st.posizione * st.superficie) AS somma_moltiplicata
-                FROM
-                    Simulazioni s
-                JOIN
-                    Struttura st ON s.Id_Simulazione = st.Id_Simulazione
-                GROUP BY
-                    s.Id_Simulazione,
-                    st.Id_Struttura;
+                FROM Simulazioni s
+                JOIN Struttura st ON s.Id_Simulazione = st.Id_Simulazione
+                GROUP BY s.Id_Simulazione, st.Id_Struttura;
                 """
             cursor.execute(query)
-            connection.commit()
             lista = cursor.fetchall()
             print("CE" + " | " + "Select effettuata! Disconnessione... \n")
         except pyodbc.Error as Errore:
@@ -70,12 +258,9 @@ def query2():
                 ORDER BY b.Entrata, b.Uscita, b.Energia_stoccata DESC
                 """
             cursor.execute(query)
-            connection.commit()
             lista = cursor.fetchall()
             print("CE" + " | " + "Select effettuata! Disconnessione... \n")
         except pyodbc.Error as Errore:
             print("CE" + " | " + "Errore {SELECT}! Disconnessione... \n")
             print(Errore)
     return lista
-
-
