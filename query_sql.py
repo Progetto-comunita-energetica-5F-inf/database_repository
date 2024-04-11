@@ -1,0 +1,81 @@
+import pyodbc
+
+
+def visualizzaTutto():
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = f"""
+                SELECT *
+                FROM Utente, 
+                Meteo, 
+                Tipo_pannello, 
+                Produzione_Storico, 
+                Costo_Energia_Storico, 
+                Simulazione, 
+                Struttura, 
+                Batteria, 
+                Compravendita
+            """
+            cursor.execute(query)
+            connection.commit()
+            lista = cursor.fetchall()
+            # Visualizzazione delle tabelle
+            print("Tabelle nel database:")
+            for table in lista:
+                print(table)
+                print("\n")
+        except pyodbc.Error as e:
+            print("Errore durante il recupero delle tabelle:", e)
+
+
+
+#-- per ogni simulazione tutti gli edifici e la somma della superficie dei pannelli solari di ogni edificio --
+def query1():
+    lista = []
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = """
+                SELECT s.Id_Simulazione, st.Id_Struttura, SUM(st.posizione * st.superficie) AS somma_moltiplicata
+                FROM
+                    Simulazioni s
+                JOIN
+                    Struttura st ON s.Id_Simulazione = st.Id_Simulazione
+                GROUP BY
+                    s.Id_Simulazione,
+                    st.Id_Struttura;
+                """
+            cursor.execute(query)
+            connection.commit()
+            lista = cursor.fetchall()
+            print("CE" + " | " + "Select effettuata! Disconnessione... \n")
+        except pyodbc.Error as Errore:
+            print("CE" + " | " + "Errore {SELECT}! Disconnessione... \n")
+            print(Errore)
+    return lista
+
+
+#-- per ogni simulazione datatime dell'ultimo inseiriti di produzione, consumo, stato della batteria --
+def query2():
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    with pyodbc.connect(connection_string) as connection:
+        try:
+            cursor = connection.cursor()
+            query = """
+                SELECT TOP 1 s.Id_simulazione, b.Entrata, b.Uscita, b.Energia_stoccata
+                FROM Batteria as b join Simulazione as s ON b.Id_sim = s.Id_simulazione
+                ORDER BY b.Entrata, b.Uscita, b.Energia_stoccata DESC
+                """
+            cursor.execute(query)
+            connection.commit()
+            lista = cursor.fetchall()
+            print("CE" + " | " + "Select effettuata! Disconnessione... \n")
+        except pyodbc.Error as Errore:
+            print("CE" + " | " + "Errore {SELECT}! Disconnessione... \n")
+            print(Errore)
+    return lista
+
+
