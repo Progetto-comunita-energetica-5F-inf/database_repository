@@ -232,10 +232,10 @@ def query1():
         try:
             cursor = connection.cursor()
             query = """
-                SELECT s.Id_Simulazione, st.Id_Struttura, SUM(st.posizione * st.superficie) AS somma_moltiplicata
-                FROM Simulazioni s
-                JOIN Struttura st ON s.Id_Simulazione = st.Id_Simulazione
-                GROUP BY s.Id_Simulazione, st.Id_Struttura;
+                SELECT s.Id_Simulazione, COUNT(st.Id_Struttura) AS Numero_Edifici, SUM(st.Superficie) AS Superficie_Pannelli_Solari
+                FROM Simulazione as s
+                JOIN Struttura as st ON s.Id_Simulazione = st.IdS
+                GROUP BY s.Id_Simulazione;
                 """
             cursor.execute(query)
             lista = cursor.fetchall()
