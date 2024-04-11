@@ -253,8 +253,8 @@ def query2():
         try:
             cursor = connection.cursor()
             query = """
-                SELECT TOP 1 s.Id_simulazione, b.Entrata, b.Uscita, b.Energia_stoccata
-                FROM Batteria as b join Simulazione as s ON b.Id_sim = s.Id_simulazione
+                SELECT TOP 1 s.Id_simulazione, b.Datatime, b.Entrata, b.Uscita, b.Energia_stoccata
+                FROM Batteria as b join Simulazione as s ON b.IdS = s.Id_simulazione
                 ORDER BY b.Entrata, b.Uscita, b.Energia_stoccata DESC
                 """
             cursor.execute(query)
