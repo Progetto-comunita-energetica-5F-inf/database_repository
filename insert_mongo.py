@@ -24,21 +24,21 @@ class TesterMongo:
         else:
             print("Errore durante l'inserimento del documento Mappa")
 
-    def insert_casa(self, x, z, lunghezza, larghezza, altezza, piani, appartamenti, tipologia, prezzo):
+    def insert_casa(self, x, z, lunghezza, larghezza, altezza, piani, appartamenti, tipologia, pannello, prezzo):
         db = self.get_db()
         collection = db["Casa"]
         doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "piani": piani,
-                "appartamenti": appartamenti, "tipologia": tipologia, "prezzo": prezzo}
+                "appartamenti": appartamenti, "tipologia": tipologia, "pannello": pannello, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Casa inserito correttamente")
         else:
             print("Errore durante l'inserimento del documento Casa")
 
-    def insert_negozio(self, x, z, lunghezza, larghezza, altezza, nome_attivita, servizi, prezzo):
+    def insert_negozio(self, x, z, lunghezza, larghezza, altezza, nome_attivita, servizi, pannello, prezzo):
             collection = self.db["Negozio"]
             doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza},
-                    "nome_attività": nome_attivita, "servizi": servizi, "prezzo": prezzo}
+                    "nome_attività": nome_attivita, "servizi": servizi, "pannello": pannello, "prezzo": prezzo}
             result = collection.insert_one(doc)
             if result.acknowledged:
                 print("Documento Negozio inserito correttamente")
@@ -47,12 +47,12 @@ class TesterMongo:
                 print("Errore durante l'inserimento del documento Negozio")
                 return None
 
-    def insert_EdificioP(self, x, z, lunghezza, larghezza, altezza, funzione, tipologia, prezzo):
+    def insert_EdificioP(self, x, z, lunghezza, larghezza, altezza, funzione, tipologia, pannello, prezzo):
         id_negozio = self.insert_negozio(lunghezza, larghezza, funzione, tipologia, prezzo)
         if id_negozio:
             collection = self.db["EdificioPubblico"]
             doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione,
-                    "tipologia": tipologia, "prezzo": prezzo, "id_negozio": id_negozio}
+                    "tipologia": tipologia, "pannello": pannello, "prezzo": prezzo, "id_negozio": id_negozio}
             result = collection.insert_one(doc)
             if result.acknowledged:
                 print("Documento Edificio Pubblico inserito correttamente")
@@ -61,10 +61,10 @@ class TesterMongo:
         else:
             print("Impossibile inserire l'Edificio Pubblico senza un ID negozio")
 
-    def insert_SpazioPubblico(self, x, z, lunghezza, larghezza, altezza, funzione, prezzo):
+    def insert_SpazioPubblico(self, x, z, lunghezza, larghezza, altezza, funzione, pannello, prezzo):
         db = self.get_db()
         collection = db["SpazioPubblico"]
-        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione, "prezzo": prezzo}
+        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione,  "pannello": pannello, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Spazio Pubblico inserito correttamente")
@@ -73,4 +73,4 @@ class TesterMongo:
 
 # Example usage
 tm = TesterMongo()
-tm.insert_casa(1, 2, 100, 200, 300, 10, 20, "villa", 1000)
+tm.insert_casa(1, 2, 100, 200, 300, 10, 20, "villa", True, 1000)
