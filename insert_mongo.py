@@ -61,10 +61,10 @@ class TesterMongo:
         else:
             print("Impossibile inserire l'Edificio Pubblico senza un ID negozio")
 
-    def insert_SpazioPubblico(self, x, z, lunghezza, larghezza, altezza, funzione, pannello, prezzo):
+    def insert_SpazioPubblico(self, x, z, lunghezza, larghezza, altezza, funzione, prezzo):
         db = self.get_db()
         collection = db["SpazioPubblico"]
-        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione,  "pannello": pannello, "prezzo": prezzo}
+        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Spazio Pubblico inserito correttamente")
