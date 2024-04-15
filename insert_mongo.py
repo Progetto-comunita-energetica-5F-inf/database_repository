@@ -14,20 +14,20 @@ class TesterMongo:
             self.__init__()
         return TesterMongo.client["Interfaccia"]
 
-    def insert_mappa(self, lunghezza, larghezza, prezzo):
+    def insert_mappa(self, x, z, case, negozi, edifici_pubblici, spazi_pubblici,  prezzo):
         db = self.get_db()
         collection = db["Mappa"]
-        doc = {"lunghezza": lunghezza, "larghezza": larghezza, "prezzo": prezzo}
+        doc = {"dimensioni": {"x": x, "z": z}, "edifici": {"case": case, "negozi": negozi, "edifici_pubblici": edifici_pubblici, "spazi_pubblici": spazi_pubblici}, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Mappa inserito correttamente")
         else:
             print("Errore durante l'inserimento del documento Mappa")
 
-    def insert_casa(self, lunghezza, larghezza, piani, appartamenti, tipologia, prezzo):
+    def insert_casa(self, x, z, lunghezza, larghezza, altezza, piani, appartamenti, tipologia, prezzo):
         db = self.get_db()
         collection = db["Casa"]
-        doc = {"lunghezza": lunghezza, "larghezza": larghezza, "piani": piani,
+        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "piani": piani,
                 "appartamenti": appartamenti, "tipologia": tipologia, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
@@ -35,9 +35,9 @@ class TesterMongo:
         else:
             print("Errore durante l'inserimento del documento Casa")
 
-    def insert_negozio(self, lunghezza, larghezza, nome_attivita, servizi, prezzo):
+    def insert_negozio(self, x, z, lunghezza, larghezza, altezza, nome_attivita, servizi, prezzo):
             collection = self.db["Negozio"]
-            doc = {"lunghezza": lunghezza, "larghezza": larghezza,
+            doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza},
                     "nome_attività": nome_attivita, "servizi": servizi, "prezzo": prezzo}
             result = collection.insert_one(doc)
             if result.acknowledged:
@@ -47,11 +47,11 @@ class TesterMongo:
                 print("Errore durante l'inserimento del documento Negozio")
                 return None
 
-    def insert_EdificioP(self, lunghezza, larghezza, funzione, tipologia, prezzo):
+    def insert_EdificioP(self, x, z, lunghezza, larghezza, altezza, funzione, tipologia, prezzo):
         id_negozio = self.insert_negozio(lunghezza, larghezza, funzione, tipologia, prezzo)
         if id_negozio:
             collection = self.db["EdificioPubblico"]
-            doc = {"lunghezza": lunghezza, "larghezza": larghezza, "funzione": funzione,
+            doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione,
                     "tipologia": tipologia, "prezzo": prezzo, "id_negozio": id_negozio}
             result = collection.insert_one(doc)
             if result.acknowledged:
@@ -61,10 +61,10 @@ class TesterMongo:
         else:
             print("Impossibile inserire l'Edificio Pubblico senza un ID negozio")
 
-    def insert_SpazioPubblico(self, lunghezza, larghezza, funzione, prezzo):
+    def insert_SpazioPubblico(self, x, z, lunghezza, larghezza, altezza, funzione, prezzo):
         db = self.get_db()
         collection = db["SpazioPubblico"]
-        doc = {"lunghezza": lunghezza, "larghezza": larghezza, "funzione": funzione, "prezzo": prezzo}
+        doc = {"posizione": {"x": x, "z": z}, "dimensioni": {"lunghezza": lunghezza, "larghezza": larghezza, "altezza": altezza}, "funzione": funzione, "prezzo": prezzo}
         result = collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Spazio Pubblico inserito correttamente")
@@ -73,4 +73,4 @@ class TesterMongo:
 
 # Example usage
 tm = TesterMongo()
-tm.insert_negozio("0002", "204", "205", "negozio1", "vendita", "15")
+tm.insert_casa(1, 2, 100, 200, 300, 10, 20, "villa", 1000)
