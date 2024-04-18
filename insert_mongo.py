@@ -71,6 +71,17 @@ class TesterMongo:
         else:
             print("Errore durante l'inserimento del documento Spazio Pubblico")
 
+
+    def insert_simulation(self,owner,creation,ground,lights,fog,antialiasing,quality,x,y,id_buildings,xp,zp,xs,zs,ys,panels):
+        db=self.get_db()
+        collection=db["Simulation"]
+        doc={"owner":owner,creation:creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
+        result=collection.insert_one(doc)
+        if result.acknowledged:
+            print("Documento Spazio Pubblico inserito correttamente")
+        else:
+            print("Errore durante l'inserimento del documento Spazio Pubblico")
+
 # Example usage
 tm = TesterMongo()
 tm.insert_casa(1, 2, 100, 200, 300, 10, 20, "villa", True, 1000)
