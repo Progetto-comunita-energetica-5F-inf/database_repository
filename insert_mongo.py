@@ -14,10 +14,10 @@ class TesterMongo:
             self.__init__()
         return TesterMongo.client["Interfaccia"]
 
-    def insert_simulation(self,owner,creation,ground,lights,fog,antialiasing,quality,x,y,id_buildings,xp,zp,xs,zs,ys,panels):
+    def insert_simulation(self,owner,name,creation,ground,lights,fog,antialiasing,quality,x,y,id_buildings,xp,zp,xs,zs,ys,panels):
         db=self.get_db()
         collection=db["Simulation"]
-        doc={"owner":owner,"creation":creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
+        doc={"owner":owner,"name":name,"creation":creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
         result=collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Simulazione inserito correttamente")
@@ -26,4 +26,4 @@ class TesterMongo:
 
 # Example usage
 tm = TesterMongo()
-tm.insert_simulation("Glober","2024/04/18","false","true","fog","false","lowPower",20,20,1,5,5,2,3,3,0)
+tm.insert_simulation("Glober","nome","2024/04/18","false","true","fog","false","lowPower",20,20,1,5,5,2,3,3,0)
