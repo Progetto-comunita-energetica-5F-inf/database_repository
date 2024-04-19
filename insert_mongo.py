@@ -17,7 +17,7 @@ class TesterMongo:
     def insert_simulation(self,owner,creation,ground,lights,fog,antialiasing,quality,x,y,id_buildings,xp,zp,xs,zs,ys,panels):
         db=self.get_db()
         collection=db["Simulation"]
-        doc={"owner":owner,creation:creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
+        doc={"owner":owner,"creation":creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
         result=collection.insert_one(doc)
         if result.acknowledged:
             print("Documento Simulazione inserito correttamente")
