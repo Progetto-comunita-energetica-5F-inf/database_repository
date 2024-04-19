@@ -20,9 +20,9 @@ class TesterMongo:
         doc={"owner":owner,creation:creation,"graphics":{"ground":ground,"lights":lights,"fog":fog,"antialiasing":antialiasing,"quality":quality},"map":{"grid":{"x":x,"y":y},"buildings":{"_id":id_buildings,"position":{"x":xp,"z":zp},"size":{"x":xs,"z":zs,"y":ys}},"panels":panels}}
         result=collection.insert_one(doc)
         if result.acknowledged:
-            print("Documento Spazio Pubblico inserito correttamente")
+            print("Documento Simulazione inserito correttamente")
         else:
-            print("Errore durante l'inserimento del documento Spazio Pubblico")
+            print("Errore durante l'inserimento del documento Simulazione")
 
 # Example usage
 tm = TesterMongo()
