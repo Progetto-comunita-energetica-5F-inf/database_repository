@@ -6,7 +6,7 @@ UTENTE-METEO-TIPO PANNELLO-PRODUZIONE STORICO-COSTO ENERGIA STORICO-BATTERIA-COM
 
 def insert_utente(username, nome, cognome, password):
 
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -20,7 +20,7 @@ def insert_utente(username, nome, cognome, password):
 
 def insert_meteo(data_ora, pressione, temperatura, velocita_vento, direzione_vento, umidita, morfologia, precipitazioni, irraggiamento):
 
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -35,7 +35,7 @@ def insert_meteo(data_ora, pressione, temperatura, velocita_vento, direzione_ven
 
 
 def insert_tipo_pannello(dimensione, stato, prezzo):
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -48,7 +48,7 @@ def insert_tipo_pannello(dimensione, stato, prezzo):
 # insert_tipo_pannello("50","non disponibile","600000") # FUNZIONA
 
 def insert_produzione_storico(data_ora, potenza):
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"  # Your connection string
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -62,7 +62,7 @@ def insert_produzione_storico(data_ora, potenza):
 
 
 def insert_costo_energia_storico(data_ora, costo_acquisto, costo_vendita):
-    connection_string =  "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    connection_string =  "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -75,7 +75,7 @@ def insert_costo_energia_storico(data_ora, costo_acquisto, costo_vendita):
 
 
 def insert_batteria(energia_stoccata, entrata, uscita, capacita_max, data_ora):
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"  # Your connection string
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -87,7 +87,7 @@ def insert_batteria(energia_stoccata, entrata, uscita, capacita_max, data_ora):
 #insert_batteria("25","50","25","700","2024/03/22 12:30:12") # FUNZIONA
 
 def insert_compravendita(guadagno, quantita_venduta, spesa, quantita_comprata, data_ora):
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"  # Your connection string
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -103,7 +103,7 @@ def insert_compravendita(guadagno, quantita_venduta, spesa, quantita_comprata, d
 def insert_simulazione(data_creazione, nome_citta, risparmio_co2,
                     id_utente, id_meteo):
 
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"  #
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
@@ -117,21 +117,37 @@ def insert_simulazione(data_creazione, nome_citta, risparmio_co2,
 #insert_simulazione("2024/03/22", "Simulazionopoli", 500, 6, 2) # FUNZIONA
 
 def insert_struttura(consumo, posizione, direzione, costo, numero_abitanti,
-                    numero_pannelli, piani, superficie, tipo, id_simulazione, id_tipo_pannello, id_produzione):
+                    numero_pannelli, piani, superficie, tipo):
+    #I tre attrubuti id(foreign key) non sono stati calcolati per poter eseguire la funzione senz il bisogno di popolare le tabelle in relazione con Struttura
 
-    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=CiaoCai123;"
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
     with pyodbc.connect(connection_string) as connection:
         cursor = connection.cursor()
         query = f"""
             INSERT INTO Struttura (Consumo, Posizione, Direzione, Costo, Num_abitanti, 
-            Numero_pannelli, Piani, Superficie, Tipo, IdS, IdPan, IdProd)
+            Numero_pannelli, Piani, Superficie, Tipo)
             VALUES ({consumo}, '{posizione}', '{direzione}', {costo}, {numero_abitanti}, 
-            {numero_pannelli}, {piani}, {superficie}, '{tipo}', {id_simulazione}, {id_tipo_pannello}, {id_produzione})
+            {numero_pannelli}, {piani}, {superficie}, '{tipo}')
         """
         cursor.execute(query)
         connection.commit()
 
-#insert_struttura(500,"Centro Nord","Sud",500,40,3,7,3000,"vila",1,1,1) # FUNZIONA
+insert_struttura(500,"Centro Nord","Sud",500,40,3,7,3000,"vila")# FUNZIONA
+
+def view_tutte_strutture():
+    connection_string = "Driver={SQL Server Native Client 11.0};Server=ce2.database.windows.net;Database=CE;Uid=SuperAdmin;Pwd=Admin123;"
+    with pyodbc.connect(connection_string) as connection:
+        cursor = connection.cursor()
+        query = f""" SELECT * FROM Struttura """
+        cursor.execute(query)
+        result=cursor.fetchall()
+        connection.commit()
+        for el in result:
+            print(el)
+            print()
+
+view_tutte_strutture()
+
 
 
 
